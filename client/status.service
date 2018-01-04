@@ -1,0 +1,10 @@
+[Unit]
+Description=Service for Inky pHat Status Display
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python /home/pi/status/client/status.py
+
+[Install]
+WantedBy=multi-user.target
