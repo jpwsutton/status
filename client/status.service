@@ -3,8 +3,9 @@ Description=Service for Inky pHat Status Display
 After=multi-user.target
 
 [Service]
+WorkingDirectory=/home/pi/status/client
 Type=idle
-ExecStart=/usr/bin/python /home/pi/status/client/status.py
+ExecStart=/usr/bin/python3 /home/pi/status/client/status.py > /home/pi/status.log 2>&1
 
 [Install]
 WantedBy=multi-user.target
