@@ -45,6 +45,8 @@ A Status display using the Pimoroni Inky pHAT and React
     MQTT_ID=statusServer
     MQTT_TOPIC=statustopic
     HTTP_PORT=9000
+    HTTP_PASS=superSecret
     ```
 - Build the Static Content: `npm run build`
 - Run the Server: `node server`
+- The default username is 'status', with the password defined in the .env file.

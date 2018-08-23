@@ -10,6 +10,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
 const mqtt = require('mqtt');
+const basicAuth = require('express-basic-auth')
 
 
 const app = express();
@@ -41,6 +42,12 @@ app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 
 // Setup body parser
 app.use(bodyParser.json());
+
+// Add Basic Auth
+app.use(basicAuth({
+    users: { 'status' : process.env.HTTP_PASS},
+    challenge: true
+}));
 
 // Setup Router and Static assets
 app.use("/", router);
