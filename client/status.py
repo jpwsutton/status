@@ -23,7 +23,7 @@ Example:
     },
   "inkyphat" : {
     "colour": "red",
-    "line_1": "James is currently"
+    "first_line": "James is currently"
     }
 }
 
@@ -42,24 +42,21 @@ from PIL import ImageFont
 import paho.mqtt.client as mqtt
 import inkyphat
 
-# Get configuration data
-with open('config.json') as data_file:
-    config = json.load(data_file)
 
 def displayStatus(statusString):
     # Prepare the String into two lines
     wrapped = textwrap.wrap(statusString, width=20)
 
     # Show the backdrop image
+    inkyphat.set_colour(config["inkyphat"]["colour"])
     inkyphat.set_border(inkyphat.RED)
     inkyphat.set_image("background.png")
-    inkyphat.set_colour(config['inkyphat']['colour'])
-    
+
     # Add the text
     font = ImageFont.truetype(inkyphat.fonts.FredokaOne, 21)
 
     # Title Line
-    line_one = config['inkyphat']['line_1']
+    line_one = config["inkyphat"]["first_line"]
     w, h = font.getsize(line_one)
     # Center the text and align it with the name strip
     x = (inkyphat.WIDTH / 2) - (w / 2)
@@ -87,6 +84,11 @@ def displayStatus(statusString):
 
 
     inkyphat.show()
+
+
+# Get configuration data
+with open('config.json') as data_file:
+    config = json.load(data_file)
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(_client, _userdata, _flags, rc):
