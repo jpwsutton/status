@@ -21,9 +21,9 @@ Example:
     "clientId" : "statusClient",
     "topic"    : "statustopic"
     },
-  "inkyphat" : {
+  "inkyphatConfig" : {
     "colour": "red",
-    "first_line": "James is currently"
+    "first_line": "James is currently:"
     }
 }
 
@@ -48,7 +48,7 @@ def displayStatus(statusString):
     wrapped = textwrap.wrap(statusString, width=20)
 
     # Show the backdrop image
-    inkyphat.set_colour(config["inkyphat"]["colour"])
+    inkyphat.set_colour(config["inkyphatConfig"]["colour"])
     inkyphat.set_border(inkyphat.RED)
     inkyphat.set_image("background.png")
 
@@ -56,7 +56,7 @@ def displayStatus(statusString):
     font = ImageFont.truetype(inkyphat.fonts.FredokaOne, 21)
 
     # Title Line
-    line_one = config["inkyphat"]["first_line"]
+    line_one = config["inkyphatConfig"]["line_one"]
     w, h = font.getsize(line_one)
     # Center the text and align it with the name strip
     x = (inkyphat.WIDTH / 2) - (w / 2)
