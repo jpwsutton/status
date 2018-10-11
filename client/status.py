@@ -23,7 +23,8 @@ Example:
     },
   "inkyphatConfig" : {
     "colour": "red",
-    "first_line": "James is currently:"
+    "first_line": "James is currently:",
+    "rotation": 0
     }
 }
 
@@ -51,6 +52,7 @@ def displayStatus(statusString):
     inkyphat.set_colour(config["inkyphatConfig"]["colour"])
     inkyphat.set_border(inkyphat.RED)
     inkyphat.set_image("background.png")
+    inkyphat.set_rotation(config["inkyphatConfig"]["rotation"])
 
     # Add the text
     font = ImageFont.truetype(inkyphat.fonts.FredokaOne, 21)
