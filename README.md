@@ -25,7 +25,11 @@ A Status display using the Pimoroni Inky pHAT and React
         "password" : "password",
         "clientId" : "statusClient",
         "topic"    : "statustopic"
-        }
+        },
+    "inkyphatConfig" : {
+        "colour" : "red",
+        "line_one"   : "James is currently:",
+    
     }
     ```
  - Run Client: `python3 status.py`

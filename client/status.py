@@ -20,6 +20,11 @@ Example:
     "port"   : 1883,
     "clientId" : "statusClient",
     "topic"    : "statustopic"
+    },
+  "inkyphatConfig" : {
+    "colour": "red",
+    "first_line": "James is currently:",
+    "rotation": 0
     }
 }
 
@@ -39,20 +44,21 @@ import paho.mqtt.client as mqtt
 import inkyphat
 
 
-
 def displayStatus(statusString):
     # Prepare the String into two lines
     wrapped = textwrap.wrap(statusString, width=20)
 
     # Show the backdrop image
+    inkyphat.set_colour(config["inkyphatConfig"]["colour"])
     inkyphat.set_border(inkyphat.RED)
     inkyphat.set_image("background.png")
+    inkyphat.set_rotation(config["inkyphatConfig"]["rotation"])
 
     # Add the text
     font = ImageFont.truetype(inkyphat.fonts.FredokaOne, 21)
 
     # Title Line
-    line_one = "James is currently:"
+    line_one = config["inkyphatConfig"]["line_one"]
     w, h = font.getsize(line_one)
     # Center the text and align it with the name strip
     x = (inkyphat.WIDTH / 2) - (w / 2)
